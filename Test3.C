@@ -10,7 +10,7 @@
 #include "TArrow.h"
 #include "TLatex.h"
 
-void macro1(){
+void Test3(){
     // The values and the errors on the Y axis
     const int n_points=10;
     double x_vals[n_points]=
@@ -33,6 +33,11 @@ void macro1(){
     auto  mycanvas = new TCanvas();
 
     // Draw the graph !
+    //It has to be a clone, to survive after the scope of Test3
+    //A imposes the drawing of the Axes.
+    //P imposes the drawing of the graph’s markers.
+    //E imposes the drawing of the graph’s error bars
+
     graph.DrawClone("APE");
 
     // Define a linear function
@@ -40,7 +45,9 @@ void macro1(){
     // Let's make the function line nicer
     f.SetLineColor(kRed); f.SetLineStyle(2);
     // Fit it to the graph and draw it
+    //Pointer is passed
     graph.Fit(&f);
+    //The “Same” option avoids the cancellation of the already drawn objects, in our case, the graph
     f.DrawClone("Same");
 
     // Build and Draw a legend
@@ -57,6 +64,7 @@ void macro1(){
     arrow.DrawClone();
 
     // Add some text to the plot
+    // Latex string
     TLatex text(8.2,7.5,"#splitline{Maximum}{Deviation}");
     text.DrawClone();
 
@@ -64,5 +72,5 @@ void macro1(){
 }
 
 int main(){
-    macro1();
+    Test3();
     }
