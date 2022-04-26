@@ -18,7 +18,7 @@ double nslit(double *x, double *par){
 }
 
 // This is the main program
-void slits() {
+void Test2() {
   float r,ns;
 
   // request user input

@@ -1,3 +1,3 @@
 {
-    1+1;
+    cout << TMath::Pi() << endl;
 }
