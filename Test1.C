@@ -1,3 +1,3 @@
 {
-    cout << "Hello Cern" << endl;
+    1+1;
 }
