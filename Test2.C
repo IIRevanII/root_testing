@@ -21,6 +21,11 @@ double nslit(double *x, double *par){
 void Test2() {
   float r,ns;
 
+
+
+PIMMMEL
+
+
   // request user input
   cout << "slit width / g ? ";
   scanf("%f",&r);
