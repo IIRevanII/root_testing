@@ -3,12 +3,12 @@
     TGraphErrors test_input("Test_data.txt", "%lg %lg %lg", "");
 
     // Instance of the graph
-    test_input.SetTitle("Measurement XYZ;length [cm];Arb.Units");
+    //test_input.SetTitle("Measurement XYZ;length [cm];Arb.Units");
 
     // Make the plot esthetically better
-    test_input.SetMarkerStyle(kOpenCircle);
-    test_input.SetMarkerColor(kBlue);
-    test_input.SetLineColor(kBlue);
+    //test_input.SetMarkerStyle(kOpenCircle);
+    //test_input.SetMarkerColor(kBlue);
+    //test_input.SetLineColor(kBlue);
 
     //Kleine Doku zu Graphen zeichnen
 
@@ -62,11 +62,11 @@
     //c1.SetName("LOL");
 
     //Funktioniert tatsächlich
-    c1.SetRealAspectRatio(1);           //fancy :D, 1 für Axe 1 und 2 für Axe 2
-    //c1.SetTitle("LOL");               //selbe wie im Constructor
+    //c1.SetRealAspectRatio(1);           //fancy :D, 1 für Axe 1 und 2 für Axe 2
+    //c1.SetTitle("LOL");                 //selbe wie im Constructor
     c1.SetGrid();
-    c1.SetFillColor(40);
-    c1.Draw();
+    //c1.SetFillColor(40);
+    //c1.Draw();
 
     //---------------------Pads------------------------------
     // der Canvas kann in mehrere Pads unterteilt werden um Plots nebeneinander zu haben https://root.cern/doc/master/classTPad.html#a2714ddd7ba72d5def84edc1fbaea8658
@@ -77,10 +77,31 @@
     //The effective drawing is performed when the canvas receives a signal to be painted
     //When an object is drawn, it is always in the so-called active pad.
     
+    //also wenn man Pads erstellt werden die automatishc dem letzen definierten Canvas hinzugefügt
+    //gPad ist der Poitner zu dem currentPad
 
+    //devide ist ne schöne Geschichte, weil es den Canvas in viele Pads unterteilt. Siehe reference manual
 
+    //name, title, xlow, ylow, xup, yup, color, bordersize, bordermode
+    TPad pad1("pad1", "Lets try this", 0, 0, 0.47, 1, 23, 5, 0);
+    TPad pad2("pad2", "Lets try this a second time", 0.53, 0, 1, 1, 3, 5, 0);
+
+    pad1.SetFillColor(11);
+    pad2.SetFillColor(20);
+
+    pad1.Draw();
+    pad2.Draw();
+
+    //weil Draw nur den Pointer in den Canvas schiebt, kann man noch immer danach Sachen im Objekt ändern und die Änderung ist trotzdem sichtbar
+    pad1.SetGrid();
+    pad1.SetLogx();
+
+    pad1.cd();
 
     test_input.Draw();
+    c1.Draw();
+
+    c1.Print("./images/Test.png");     // Save the canvas in a .pdf file
 
     //sollte eigentlich funktionieren aber kp
     //c1.show();
